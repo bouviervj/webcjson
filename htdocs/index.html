@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>Welcome under Webcjson</title>
+<script src="./js/jquery-1.10.2.min.js"></script>
+<script src="./js/webcjson-rpc.js"></script>
+ <script>
+
+	$(function() {
+		
+		var aRPC = new webcjson_rpc("/module_fibo", function(){
+
+			console.log("RPC initialized ...");
+
+			aRPC.setDebug();
+			aRPC.fibonacci(11, function(iObject,iResult){
+				console.log(iResult);
+				$("#fibonacci").html("fibonacci(11)="+iResult);
+			});
+
+			aRPC.fibonacci_it(17, function(iObject,iResult){
+				console.log(iResult);
+				$("#fibonacci_it").html("fibonacci_it(17)="+iResult);
+			});
+
+
+		});
+
+	});
+
+</script>
+</head>
+<body>
+Welcome under Webcjson
+<div id="fibonacci"></div>
+<div id="fibonacci_it"></div>
+</body>

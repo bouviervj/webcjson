@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>Welcome under Webcjson : test module_context</title>
+<script src="./js/jquery-1.10.2.min.js"></script>
+<script src="./js/webcjson-rpc.js"></script>
+ <script>
+
+	$(function() {
+		
+		var aRPC = new webcjson_rpc("/module_context", function(){
+
+			console.log("RPC initialized ...");
+
+			aRPC.setDebug();
+			aRPC.inc(function(iObject,iResult){
+				console.log(iResult);
+				$("#inc_0").html("inc()="+iResult);
+
+				aRPC.inc(function(iObject,iResult){
+					console.log(iResult);
+					$("#inc_1").html("inc()="+iResult);
+				});
+
+			});
+
+		});
+
+	});
+
+</script>
+</head>
+<body>
+Welcome under Webcjson : test module_context
+<div id="inc_0"></div>
+<div id="inc_1"></div>
+</body>
