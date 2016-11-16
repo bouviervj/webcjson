@@ -70,7 +70,7 @@ namespace webcjson {
 
 	    OpenSSL_add_all_algorithms();  /* load & register all cryptos, etc. */
 	    SSL_load_error_strings();   /* load all error messages */
-	    method = SSLv3_server_method();  /* create new server-method instance */
+	    method = TLSv1_2_server_method();  /* create new server-method instance */
 	    ctx = SSL_CTX_new(method);   /* create new context from method */
 	    if ( ctx == NULL )
 	    {

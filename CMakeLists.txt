@@ -43,9 +43,9 @@ include_directories( ./test )
 add_subdirectory (lib)
 
 SET(CC_COVERAGE_COMPILE_FLAGS "-fPIC -g -O0")
-SET(CC_COVERAGE_LINK_FLAGS    "")
+SET(CC_COVERAGE_LINK_FLAGS    " ")
 
-SET( CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${CC_COVERAGE_COMPILE_FLAGS} ${CC_COVERAGE_LINK_FLAGS}" )
+SET( CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${CC_COVERAGE_COMPILE_FLAGS} ${CC_COVERAGE_LINK_FLAGS} " )
 SET( CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} ${CC_COVERAGE_LINK_FLAGS}" ) 
 
 # Libraries
@@ -90,7 +90,7 @@ add_executable(stubber
 			${jsonxx_sources} 
 			${trex_sources} )
 
-target_link_libraries(stubber ${CMAKE_DL_LIBS} ${XERCESC_LIBRARY} ${ZLIB_LIBRARIES} ) 
+target_link_libraries(stubber ${CMAKE_DL_LIBS} ${XERCESC_LIBRARY} ${ZLIB_LIBRARIES} -lpthread) 
 
 add_executable(webcjson 
 			${server_sources} 
@@ -104,7 +104,7 @@ add_executable(webcjson
 			${jsonxx_sources} 
 			${trex_sources} )
 			#${db_wrappers_sql_sources} )
-target_link_libraries(webcjson ${CMAKE_DL_LIBS} ${XERCESC_LIBRARY} ${ZLIB_LIBRARIES} ${OPENSSL_LIBRARIES} )
+target_link_libraries(webcjson ${CMAKE_DL_LIBS} ${XERCESC_LIBRARY} ${ZLIB_LIBRARIES} ${OPENSSL_LIBRARIES} -lpthread)
 
 add_executable(test_db_wrapper 
 			${test_db_wrapper}
@@ -120,7 +120,7 @@ add_executable(test_db_wrapper
 			${db_wrappers_sql_sources}
 			${db_driver_sql_sources}
 			${db_driver_mysql_sources} )
-target_link_libraries(test_db_wrapper ${CMAKE_DL_LIBS} ${XERCESC_LIBRARY} ${ZLIB_LIBRARIES} ${MYSQL_LIBRARY})
+target_link_libraries(test_db_wrapper ${CMAKE_DL_LIBS} ${XERCESC_LIBRARY} ${ZLIB_LIBRARIES} ${MYSQL_LIBRARY} -lpthread)
 
 add_library(stubbed SHARED ${stubs_sources} ${lib_sources} )
 set_target_properties( stubbed
